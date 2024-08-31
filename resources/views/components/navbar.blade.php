@@ -7,18 +7,26 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
+                @if (Auth::check())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard.index') }}">Home</a>
+                    </li>
+                    @if (Auth::user()->roles[0]->name == 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.index') }}">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('role.index') }}">Role</a>
+                        </li>
+                    @endif
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('overtime-letter.index') }}">Pengajuan Lembur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-danger" href="{{ route('logout') }}">Log out</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthMiddleware
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,11 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
+        $user = Auth::user();
+
+        if (Auth::check() && $user->roles[0]->name == 'admin') {
             return $next($request);
         }
-
-        return $next($request);
-
-        //return redirect()->route('login.index')->withErrors('silahkan login terlebih dahulu');
+        return redirect()->route('dashboard.index')->withErrors('unauthorized');
     }
 }
