@@ -20,6 +20,8 @@ class AuthMiddleware
             return $next($request);
         }
 
-        return redirect()->route('login.index')->withErrors('silahkan login terlebih dahulu');
+        return $next($request);
+
+        //return redirect()->route('login.index')->withErrors('silahkan login terlebih dahulu');
     }
 }
