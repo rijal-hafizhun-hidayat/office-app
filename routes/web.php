@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('login.index');
-});
+Route::get('/', [AuthController::class, 'login'])->name('login.index');
+Route::post('/', [AuthController::class, 'auth'])->name('login.auth');
 
 Route::prefix('/role')->group(function () {
     Route::get('/', [RoleController::class, 'index'])->name('role.index');

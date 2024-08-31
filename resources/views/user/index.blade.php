@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="col">
                                                 <a href="{{ route('user.change-password.index', ['id' => $user->id]) }}"
-                                                    class="btn btn-secondary">password</a>
+                                                    class="btn btn-secondary">Password</a>
                                             </div>
                                             <div class="col">
                                                 <form action="{{ route('user.destroy', ['id' => $user->id]) }}" method="post">
