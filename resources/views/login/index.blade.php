@@ -4,12 +4,12 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <form action="#" method="post">
+                    <form action="{{ route('login.auth') }}" method="post">
                         @csrf
                         <div class="row mb-2">
                             <div class="col">
-                                <label for="">Username</label>
-                                <input type="text" name="username" class="form-control" id="">
+                                <label for="">Email</label>
+                                <input type="email" name="email" class="form-control" id="">
                             </div>
                         </div>
                         <div class="row mb-2">
