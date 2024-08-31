@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OvertimeLetterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthMiddleware;
@@ -32,4 +33,19 @@ Route::middleware([AuthMiddleware::class])->group(function () {
             Route::patch('/', [UserController::class, 'updatePassword'])->name('user.change-password.patch');
         });
     });
+
+    Route::prefix('/overtime-letter')->group(function () {
+        Route::get('/', [OvertimeLetterController::class, 'index'])->name('overtime-letter.index');
+        Route::get('/create', [OvertimeLetterController::class, 'create'])->name('overtime-letter.create');
+        Route::post('/', [OvertimeLetterController::class, 'store'])->name('overtime-letter.store');
+        Route::get('/{id}', [OvertimeLetterController::class, 'show'])->name('overtime-letter.show');
+        Route::delete('/{id}', [OvertimeLetterController::class, 'destroy'])->name('overtime-letter.destroy');
+        Route::put('/{id}', [OvertimeLetterController::class, 'update'])->name('overtime-letter.update');
+
+        Route::prefix('/{id}/approved')->group(function () {
+            Route::patch('/', [OvertimeLetterController::class, 'approvOvertimeLetter'])->name('overtime-letter.approved.index');
+        });
+    });
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

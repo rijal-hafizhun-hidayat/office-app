@@ -110,6 +110,7 @@ class UserController extends Controller
 
         $userRole = UserRole::where('user_id', $id)->where('role_id', $currentUserActiveRoleId)->first();
 
+
         if (!$userRole) {
             return redirect()->back()->withErrors('user role not found');
         }
