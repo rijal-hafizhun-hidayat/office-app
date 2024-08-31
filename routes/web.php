@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OvertimeLetterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -11,6 +12,9 @@ Route::get('/', [AuthController::class, 'login'])->name('login.index');
 Route::post('/', [AuthController::class, 'auth'])->name('login.auth');
 
 Route::middleware([AuthMiddleware::class])->group(function () {
+    Route::prefix('/dashboard')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    });
     Route::prefix('/role')->group(function () {
         Route::get('/', [RoleController::class, 'index'])->name('role.index');
         Route::get('/create', [RoleController::class, 'create'])->name('role.create');
