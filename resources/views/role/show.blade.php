@@ -4,18 +4,14 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <form action="{{ route('login.auth') }}" method="post">
+                    <form action="{{ route('role.update', ['id' => $role->id]) }}" method="post">
+                        @method('put')
                         @csrf
                         <div class="row mb-2">
                             <div class="col">
-                                <label for="">Email</label>
-                                <input type="email" name="email" class="form-control" id="">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col">
-                                <label for="">Password</label>
-                                <input type="password" name="password" class="form-control" id="">
+                                <label for="">Nama Role</label>
+                                <input type="text" name="name" value="{{ $role->name }}" class="form-control"
+                                    id="">
                             </div>
                         </div>
                         <div class="row">
