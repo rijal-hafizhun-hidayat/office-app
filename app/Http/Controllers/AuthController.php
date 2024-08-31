@@ -22,7 +22,7 @@ class AuthController extends Controller
         if (Auth::attempt($payload)) {
             $request->session()->regenerate();
 
-            return redirect()->route('user.index');
+            return redirect()->route('dashboard.index');
         }
 
         return back()->withErrors('username atau password salah')->onlyInput('email');
